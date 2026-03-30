@@ -144,7 +144,7 @@ class XDC:
         if self.sbh_token:
             response = requests.post(
                 f'{self.sbh_url}/login',
-                headers={'Accept': 'text/plain', 'X-Authorization': self.sbh_token}
+                headers={'Accept': 'text/plain', 'X-authorization': self.sbh_token}
             )
             response.raise_for_status()
             # self.sbh_user = 
@@ -158,8 +158,6 @@ class XDC:
                     }
             )
             response.raise_for_status()
-            # TODO: if [user looks like email]:
-                # [reassign user to be the actual username]
             self.sbh_token = response.text
         else:
             print("Unable to login to SynBioHub")
@@ -184,6 +182,8 @@ class XDC:
                 'X-authorization': self.sbh_token
                 }
         )
+        self.sbh_user = response.json()["username"]
+        print(self.sbh_user)
         self.sbol_graph_uri = response.json()['graphUri']
         sbol_collec_url = f'{self.sbol_graph_uri}/{self.sbh_collection_name}'
 
