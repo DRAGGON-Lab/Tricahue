@@ -86,7 +86,10 @@ class XDC:
         self.sbol_doc = sbol2.Document()
         self.sbol_fj_doc = sbol2.Document()
         self.sbol_graph_uri = None
-        self.sbh_collection_name = re.search(r'[\w-]+?(?=\.)', input_excel_path).group()
+        if isinstance(input_excel_path, str):
+            self.sbh_collection_name = re.search(r'[\w-]+?(?=\.)', input_excel_path).group()
+        else:
+            self.sbh_collection_name = 'New_collection'
         self.file_path_out = f'{self.sbh_collection_name}_converted_SBOL.xml'
         self.file_path_out_FJ = f'{self.sbh_collection_name}_SBOL_Fj_doc.xml'
         self.homespace = homespace
