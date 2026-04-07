@@ -145,12 +145,8 @@ class XDC:
     def _log_in_sbh(self):
         # SBH Login
         if self.sbh_token:
-            response = requests.post(
-                f'{self.sbh_url}/login',
-                headers={'Accept': 'text/plain', 'X-authorization': self.sbh_token}
-            )
-            response.raise_for_status()
-            # self.sbh_user = 
+            pass
+            # already logged in, checks validity in next step
         elif self.sbh_user and self.sbh_pass:
             response = requests.post(
                 f'{self.sbh_url}/login',
@@ -185,6 +181,7 @@ class XDC:
                 'X-authorization': self.sbh_token
                 }
         )
+        response.raise_for_status()
         self.sbh_user = response.json()["username"]
         print(self.sbh_user)
         self.sbol_graph_uri = response.json()['graphUri']
