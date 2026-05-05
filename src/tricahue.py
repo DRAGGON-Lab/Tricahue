@@ -281,7 +281,7 @@ class XDC:
                 with open(file, 'rb') as fobj:
                     upload_file = {'file': (os.path.basename(file), fobj)}
                     # print(upload_url)
-                    response = requests.post(f'{self.collection_url}/attach', headers=headers, files=upload_file)
+                    response = requests.post(f'{self.collection_url[:-2]}/{location}/{self.version}/attach', headers=headers, files=upload_file)
                     response.raise_for_status()
                     print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
             else:
@@ -290,7 +290,7 @@ class XDC:
                 fobj = getattr(file, 'stream', None) or getattr(file, 'file', None) or file
                 upload_file = {'file': (filename, fobj)}
                 # print(upload_url)
-                response = requests.post(f'{self.collection_url}/attach', headers=headers, files=upload_file)
+                response = requests.post(f'{self.collection_url[:-2]}/{location}/{self.version}/attach', headers=headers, files=upload_file)
                 response.raise_for_status()
                 print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
 
