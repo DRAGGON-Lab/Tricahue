@@ -268,9 +268,8 @@ class XDC:
                 raise AttributeError(f'The collection ({self.sbh_collection_name}) could not be submitted to synbiohub as the collection already exists and overite is not on.')
 
             response.raise_for_status()
-            self.upload_url = f'{self.sbol_graph_uri}/{self.sbh_collection_name}/{self.sbh_collection_name}_collection/1'
-
-
+            return f'{self.sbol_graph_uri}/{self.sbh_collection_name}/{self.sbh_collection_name}_collection/1'
+        
     def _upload_sbh_attachments(self):
 
         headers = {'Accept': 'text/plain', 'X-authorization': self.sbh_token}
@@ -282,7 +281,7 @@ class XDC:
                 with open(file, 'rb') as fobj:
                     upload_file = {'file': (os.path.basename(file), fobj)}
                     # print(upload_url)
-                    response = requests.post(f'{self.upload_url}/attach', headers=headers, files=upload_file)
+                    response = requests.post(f'{self.collection_url}/attach', headers=headers, files=upload_file)
                     response.raise_for_status()
                     print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
             else:
@@ -291,7 +290,7 @@ class XDC:
                 fobj = getattr(file, 'stream', None) or getattr(file, 'file', None) or file
                 upload_file = {'file': (filename, fobj)}
                 # print(upload_url)
-                response = requests.post(f'{self.upload_url}/attach', headers=headers, files=upload_file)
+                response = requests.post(f'{self.collection_url}/attach', headers=headers, files=upload_file)
                 response.raise_for_status()
                 print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
 
