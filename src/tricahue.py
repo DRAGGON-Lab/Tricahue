@@ -241,6 +241,7 @@ class XDC:
             )
             
             response.raise_for_status()
+            print("content: ", response.content)
             return self.sbh_collection_url
 
         else:
@@ -267,7 +268,7 @@ class XDC:
                 raise AttributeError(f'The collection ({self.sbh_collection_name}) could not be submitted to synbiohub as the collection already exists and overite is not on.')
 
             response.raise_for_status()
-            return f'{self.sbol_graph_uri}/{self.sbh_collection_name}/{self.sbh_collection_name}_collection/1'
+            self.upload_url = f'{self.sbol_graph_uri}/{self.sbh_collection_name}/{self.sbh_collection_name}_collection/1'
 
 
     def _upload_sbh_attachments(self):
@@ -276,13 +277,12 @@ class XDC:
         self.version = '1'
 
         for location, file in self.attachments.items():
-            upload_url = '/'.join(s.strip('/') for s in [self.sbh_url, 'user', self.sbh_user, self.sbh_collection_name, location, self.version])
 
             if isinstance(file, str):
                 with open(file, 'rb') as fobj:
                     upload_file = {'file': (os.path.basename(file), fobj)}
                     # print(upload_url)
-                    response = requests.post(f'{upload_url}/attach', headers=headers, files=upload_file)
+                    response = requests.post(f'{self.upload_url}/attach', headers=headers, files=upload_file)
                     response.raise_for_status()
                     print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
             else:
@@ -291,7 +291,7 @@ class XDC:
                 fobj = getattr(file, 'stream', None) or getattr(file, 'file', None) or file
                 upload_file = {'file': (filename, fobj)}
                 # print(upload_url)
-                response = requests.post(f'{upload_url}/attach', headers=headers, files=upload_file)
+                response = requests.post(f'{self.upload_url}/attach', headers=headers, files=upload_file)
                 response.raise_for_status()
                 print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
 
