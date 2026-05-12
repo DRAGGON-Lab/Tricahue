@@ -282,7 +282,7 @@ class XDC:
                     upload_file = {'file': (os.path.basename(file), fobj)}
                     # print(upload_url)
                     i = self.collection_url[:-2].rfind("/")
-                    response = requests.post(f'{self.collection_url[:i]}/{location}/{self.version}/attach', headers=headers, files=upload_file)
+                    response = requests.post(f'{self.collection_url[:i]}/{self.version}/attach', headers=headers, files=upload_file)
                     response.raise_for_status()
                     print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
             else:
@@ -292,7 +292,7 @@ class XDC:
                 upload_file = {'file': (filename, fobj)}
                 # print(upload_url)
                 i = self.collection_url[:-2].rfind("/")
-                response = requests.post(f'{self.collection_url[:i]}/{location}/{self.version}/attach', headers=headers, files=upload_file)
+                response = requests.post(f'{self.collection_url[:i]}/{self.version}/attach', headers=headers, files=upload_file)
                 response.raise_for_status()
                 print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
 
