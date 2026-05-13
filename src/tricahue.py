@@ -176,6 +176,7 @@ class XDC:
             print("conversion complete")
             self.sbol_doc = doc
         except Exception as e:
+            print("CONVERSION FAILED --- SEE MESSAGE")
             print(e)
             raise 
 
