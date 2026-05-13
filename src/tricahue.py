@@ -236,6 +236,11 @@ class XDC:
 
         # SBH file upload
         if (existing):
+            print(f"sbh token: {self.sbh_token}")
+            print(f"root collections: {self.sbh_collection_url}")
+            print(f"sbh url: {self.sbh_url}")
+            print(f"sbh overwrite: {self.sbh_overwrite_num}")
+            print(f"file output: {self.file_path_out_FJ}")
             response =  requests.post(
                 f'{self.sbh_url}/submit',
                 headers={
@@ -250,12 +255,13 @@ class XDC:
                     'overwrite_merge' : self.sbh_overwrite_num
                 },
             )
-            
+            print(response)
             response.raise_for_status()
             print("content: ", response.content)
             return self.sbh_collection_url
 
         else:
+            print("creating new collection")
             response = requests.post(
                 f'{self.sbh_url}/submit',
                 headers={
