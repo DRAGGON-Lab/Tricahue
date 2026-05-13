@@ -117,6 +117,7 @@ class XDC:
 
 
     def _log_in_fj(self):
+        print("logging into fj")
         if not self.fj_url:
             print('No Flapjack URL provided')
             self.fj_token = None
@@ -144,6 +145,7 @@ class XDC:
 
     def _log_in_sbh(self):
         # SBH Login
+        print("logging into SBH")
         if self.sbh_token:
             pass
             # already logged in, checks validity in next step
@@ -163,16 +165,22 @@ class XDC:
 
 
     def _convert_to_sbol(self, sbol_version=2):
-        sbol2.Config.setOption(sbol2.ConfigOptions.SBOL_COMPLIANT_URIS, True)
-        sbol2.Config.setOption(sbol2.ConfigOptions.SBOL_TYPED_URIS, False)
-        excel2sbol.converter(file_path_in = self.input_excel_path, 
-                file_path_out = self.file_path_out, homespace=self.homespace, sbol_version=sbol_version)
-        doc = sbol2.Document()
-        doc.read(self.file_path_out)
-        self.sbol_doc = doc      
-
+        print("converting to SBOL")
+        try:
+            sbol2.Config.setOption(sbol2.ConfigOptions.SBOL_COMPLIANT_URIS, True)
+            sbol2.Config.setOption(sbol2.ConfigOptions.SBOL_TYPED_URIS, False)
+            excel2sbol.converter(file_path_in = self.input_excel_path, 
+                    file_path_out = self.file_path_out, homespace=self.homespace, sbol_version=sbol_version)
+            doc = sbol2.Document()
+            doc.read(self.file_path_out)
+            print("conversion complete")
+            self.sbol_doc = doc
+        except Exception as e:
+            print(e)
+            raise 
 
     def _generate_sbol_hash_map(self):
+        print("generating sbol hash map")
         # Pull graph uri from synbiohub
         response = requests.get(
             f'{self.sbh_url}/profile',
@@ -200,6 +208,7 @@ class XDC:
 
 
     def _upload_to_fj(self, header_rows=3):
+        print("")
         self.x2f.sbol_hash_map = self.sbol_hash_map
         self.x2f.generate_sheets_to_object_mapping()
         self.x2f.index_skiprows = header_rows
@@ -210,6 +219,7 @@ class XDC:
 
 
     def _upload_to_sbh(self, existing):
+        print('uploading to SBH')
         # Add flapjack annotations to the SBOL
         doc = sbol2.Document()
         doc.read(self.file_path_out)
@@ -271,7 +281,7 @@ class XDC:
             return f'{self.sbol_graph_uri}/{self.sbh_collection_name}/{self.sbh_collection_name}_collection/1'
         
     def _upload_sbh_attachments(self):
-
+        print("uploading attachments")
         headers = {'Accept': 'text/plain', 'X-authorization': self.sbh_token}
         self.version = '1'
 
@@ -307,15 +317,18 @@ class XDC:
         if (self.sbh_token):
             self._log_in_fj()
             self._generate_sbol_hash_map()
+            print("sbol hash map generated")
 
             if (self.fj_token):
                 self._upload_to_fj()
 
             self.collection_url = self._upload_to_sbh(existing)
+            print("collection URL: " + self.collection_url)
 
             if self.attachments is not None:
                 print(self.attachments)
                 self._upload_sbh_attachments()
+                print("uploaded attachements to SBH")
             print("XDC run complete")
 
             # TODO: return FJ url or status
