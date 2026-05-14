@@ -8,6 +8,7 @@ import pandas as pd
 from openpyxl import load_workbook
 import numpy as np
 import re
+import traceback
 
 class XDC:
 
@@ -177,7 +178,21 @@ class XDC:
             self.sbol_doc = doc
         except Exception as e:
             print("CONVERSION FAILED --- SEE MESSAGE")
-            print(e)
+            print(f"{type(e).__name__}: {e}")
+
+            # Print full traceback so package-level failures are visible.
+            traceback.print_exc()
+
+            # If present, print chained exceptions explicitly for deeper root-cause debugging.
+            if e.__cause__ is not None:
+                print("\nDirect cause:")
+                print(f"{type(e.__cause__).__name__}: {e.__cause__}")
+                print("".join(traceback.format_exception(type(e.__cause__), e.__cause__, e.__cause__.__traceback__)))
+
+            if e.__context__ is not None and e.__context__ is not e.__cause__:
+                print("\nContext:")
+                print(f"{type(e.__context__).__name__}: {e.__context__}")
+                print("".join(traceback.format_exception(type(e.__context__), e.__context__, e.__context__.__traceback__)))
             raise 
 
     def _generate_sbol_hash_map(self):
