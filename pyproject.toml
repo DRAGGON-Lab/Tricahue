@@ -8,7 +8,7 @@ version = "0.0.b5"
 description = "This package extracts experimental data and metadata, converts to standard formats, uploads to SynBioHub and Flapjack, and connects them"
 readme = "README.md"
 dependencies = [
-    "excel2flapjack>=1.0.11",
+    "excel2flapjack @ git+https://github.com/SynBioDex/Excel-to-Flapjack.git",
     "excel2sbol @ git+https://github.com/SynBioDex/Excel-to-SBOL.git@fix-no-part-id-and-no-blank-id",
     "numpy==1.26.2",
     "pandas==1.5.3"   
