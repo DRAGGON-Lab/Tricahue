@@ -80,7 +80,7 @@ class XDC:
         Runs the XDC process internally
 
     """
-    def __init__(self, input_excel_path, attachments=None, homespace='https://example.org'):
+    def __init__(self, input_excel_path, attachments=None, homespace='https://example.org/'):
         self.input_excel_path = input_excel_path
         self.attachments = attachments
         self.x2f = None
