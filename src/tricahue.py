@@ -336,6 +336,53 @@ class XDC:
     def run(self, existing):
 
         print("Starting XDC run")
+
+        try:
+            self._log_in_sbh()
+        except Exception as e:
+            raise RuntimeError(f"Error logging into SynBioHub: {e}") from e
+
+        if not self.sbh_token:
+            raise AttributeError("Unable to login to SynBioHub")
+
+        try:
+            self._log_in_fj()
+        except Exception as e:
+            raise RuntimeError(f"Error logging into Flapjack: {e}") from e
+
+        try:
+            self._generate_sbol_hash_map()
+            print("sbol hash map generated")
+        except Exception as e:
+            raise RuntimeError(f"Error generating SBOL hash map: {e}") from e
+
+        if self.fj_token:
+            try:
+                self._upload_to_fj()
+            except Exception as e:
+                raise RuntimeError(f"Error uploading to Flapjack: {e}") from e
+
+        try:
+            self.collection_url = self._upload_to_sbh(existing)
+            print("collection URL: " + str(self.collection_url))
+        except Exception as e:
+            raise RuntimeError(f"Error uploading to SynBioHub: {e}") from e
+
+        if self.attachments is not None:
+            print(self.attachments)
+
+        try:
+            self._upload_sbh_attachments()
+            print("uploaded attachments to SBH")
+        except Exception as e:
+            raise RuntimeError(f"Error uploading attachments to SynBioHub: {e}") from e
+
+        print("XDC run complete")
+        return (self.collection_url, None)
+
+    def run(self, existing):
+
+        print("Starting XDC run")
         self._log_in_sbh()
 
         if (self.sbh_token):
