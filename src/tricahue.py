@@ -114,8 +114,10 @@ class XDC:
         self.upload_url = None
         self.collection_url = None
 
-        self._convert_to_sbol()
-
+        try:
+            self._convert_to_sbol()
+        except Exception as e:
+            raise Exception(f"Error during SBOL conversion: {e}") from e
 
     def _log_in_fj(self):
         print("logging into fj")
