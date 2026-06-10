@@ -273,9 +273,12 @@ class XDC:
                     'overwrite_merge' : self.sbh_overwrite_num
                 },
             )
-            print(response)
-            response.raise_for_status()
+            print("status:", response.status_code)
+            print("headers:", response.headers)
+            print("body:", response.text)
             print("content: ", response.content)
+            if not response.ok:
+                raise Exception(f"SynBioHub submit failed ({response.status_code}): {response.text}")
             return self.sbh_collection_url
 
         else:
@@ -300,9 +303,14 @@ class XDC:
             if response.text == "Submission id and version already in use":
                 print('not submitted')
                 self.upload_url = None
-                raise AttributeError(f'The collection ({self.sbh_collection_name}) could not be submitted to synbiohub as the collection already exists and overite is not on.')
+                raise AttributeError(f'The collection ({self.sbh_collection_name}) could not be submitted to synbiohub as the collection already exists and overwrite is not on.')
 
-            response.raise_for_status()
+            print("status:", response.status_code)
+            print("headers:", response.headers)
+            print("body:", response.text)
+            print("content: ", response.content)
+            if not response.ok:
+                raise Exception(f"SynBioHub submit failed ({response.status_code}): {response.text}")
             return f'{self.sbol_graph_uri}/{self.sbh_collection_name}/{self.sbh_collection_name}_collection/1'
         
     def _upload_sbh_attachments(self):
