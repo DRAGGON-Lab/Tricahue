@@ -387,8 +387,8 @@ class XDC:
 
         print("XDC run complete")
         return (self.collection_url, None)
-
-      def get_sbol_document(self):
+   
+    def get_sbol_document(self):
         return self.sbol_doc
 
 
