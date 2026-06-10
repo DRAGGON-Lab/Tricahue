@@ -117,6 +117,7 @@ class XDC:
         try:
             self._convert_to_sbol()
         except Exception as e:
+            print('SBOL Conversion Failed')
             raise Exception(f"Error during SBOL conversion: {e}") from e
 
     def _log_in_fj(self):
@@ -340,32 +341,38 @@ class XDC:
         try:
             self._log_in_sbh()
         except Exception as e:
+            print('Error logging into SynBioHub')
             raise RuntimeError(f"Error logging into SynBioHub: {e}") from e
 
         if not self.sbh_token:
+            print('Unable to login to SynBioHub')
             raise AttributeError("Unable to login to SynBioHub")
 
         try:
             self._log_in_fj()
         except Exception as e:
+            print('Error logging into Flapjack')
             raise RuntimeError(f"Error logging into Flapjack: {e}") from e
 
         try:
             self._generate_sbol_hash_map()
             print("sbol hash map generated")
         except Exception as e:
+            print('Error generating SBOL hash map')
             raise RuntimeError(f"Error generating SBOL hash map: {e}") from e
 
         if self.fj_token:
             try:
                 self._upload_to_fj()
             except Exception as e:
+                print('Error uploading to Flapjack')
                 raise RuntimeError(f"Error uploading to Flapjack: {e}") from e
 
         try:
             self.collection_url = self._upload_to_sbh(existing)
             print("collection URL: " + str(self.collection_url))
         except Exception as e:
+            print('Error uploading to SynBioHub')
             raise RuntimeError(f"Error uploading to SynBioHub: {e}") from e
 
         if self.attachments is not None:
@@ -375,6 +382,7 @@ class XDC:
             self._upload_sbh_attachments()
             print("uploaded attachments to SBH")
         except Exception as e:
+            print('Error uploading attachments to SynBioHub')
             raise RuntimeError(f"Error uploading attachments to SynBioHub: {e}") from e
 
         print("XDC run complete")
