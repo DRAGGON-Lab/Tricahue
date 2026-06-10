@@ -162,7 +162,12 @@ class XDC:
                     'password' : self.sbh_pass,
                     }
             )
-            response.raise_for_status()
+            print("status:", response.status_code)
+            print("headers:", response.headers)
+            print("body:", response.text)
+            print("content: ", response.content)
+            if not response.ok:
+                raise Exception(f"SynBioHub login failed ({response.status_code}): {response.text}")
             self.sbh_token = response.text
         else:
             print("Unable to login to SynBioHub")
@@ -208,7 +213,12 @@ class XDC:
                 'X-authorization': self.sbh_token
                 }
         )
-        response.raise_for_status()
+        print("status:", response.status_code)
+        print("headers:", response.headers)
+        print("body:", response.text)
+        print("content: ", response.content)
+        if not response.ok:
+            raise Exception(f"Error accessing SynBioHub profile ({response.status_code}): {response.text}")
         self.sbh_user = response.json()["username"]
         print(self.sbh_user)
         self.sbol_graph_uri = response.json()['graphUri']
@@ -327,7 +337,12 @@ class XDC:
                     #i = self.collection_url[:-2].rfind("/")
                     #print(i)
                     response = requests.post(f'{self.collection_url}/attach', headers=headers, files=upload_file)
-                    response.raise_for_status()
+                    print("status:", response.status_code)
+                    print("headers:", response.headers)
+                    print("body:", response.text)
+                    print("content: ", response.content)
+                    if not response.ok:
+                        raise Exception(f"Uploading attachments to SynBioHub failed ({response.status_code}): {response.text}")
                     print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
             else:
                 # file-like objects
@@ -338,7 +353,12 @@ class XDC:
                 #i = self.collection_url[:-2].rfind("/")
                 #print(i)
                 response = requests.post(f'{self.collection_url}/attach', headers=headers, files=upload_file)
-                response.raise_for_status()
+                print("status:", response.status_code)
+                print("headers:", response.headers)
+                print("body:", response.text)
+                print("content: ", response.content)
+                if not response.ok:
+                    raise Exception(f"Uploading attachments to SynBioHub failed ({response.status_code}): {response.text}")
                 print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
 
 
