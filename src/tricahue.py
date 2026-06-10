@@ -196,7 +196,7 @@ class XDC:
                 print("\nContext:")
                 print(f"{type(e.__context__).__name__}: {e.__context__}")
                 print("".join(traceback.format_exception(type(e.__context__), e.__context__, e.__context__.__traceback__)))
-            raise Exception(f"Error during SBOL conversion: {e}") from e 
+            raise
 
     def _generate_sbol_hash_map(self):
         print("generating sbol hash map")
