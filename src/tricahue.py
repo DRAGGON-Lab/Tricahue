@@ -388,36 +388,7 @@ class XDC:
         print("XDC run complete")
         return (self.collection_url, None)
 
-    def run(self, existing):
-
-        print("Starting XDC run")
-        self._log_in_sbh()
-
-        if (self.sbh_token):
-            self._log_in_fj()
-            self._generate_sbol_hash_map()
-            print("sbol hash map generated")
-
-            if (self.fj_token):
-                self._upload_to_fj()
-
-            self.collection_url = self._upload_to_sbh(existing)
-            print("collection URL: " + self.collection_url)
-
-            if self.attachments is not None:
-                print(self.attachments)
-                self._upload_sbh_attachments()
-                print("uploaded attachements to SBH")
-            print("XDC run complete")
-
-            # TODO: return FJ url or status
-            return (self.collection_url, None)
-        
-        else:
-            raise AttributeError(f'Unable to login to SynBioHub')
-
-
-    def get_sbol_document(self):
+      def get_sbol_document(self):
         return self.sbol_doc
 
 
