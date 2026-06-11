@@ -334,9 +334,10 @@ class XDC:
                 with open(file, 'rb') as fobj:
                     upload_file = {'file': (os.path.basename(file), fobj)}
                     print(self.collection_url)
-                    i = self.collection_url[:-2].rfind("/")
-                    print(i)
-                    response = requests.post(f'{self.collection_url}/attach', headers=headers, files=upload_file)
+                    collectionID = self.collection_url.split("/")[-3]
+                    print(collectionID)
+                    print(f'{self.sbh_url}/{collectionID}/{collectionID}_collection/attach')
+                    response = requests.post(f'{self.sbh_url}/{collectionID}/{collectionID}_collection/attach', headers=headers, files=upload_file)
                     print("status:", response.status_code)
                     print("headers:", response.headers)
                     print("body:", response.text)
@@ -350,9 +351,10 @@ class XDC:
                 fobj = getattr(file, 'stream', None) or getattr(file, 'file', None) or file
                 upload_file = {'file': (filename, fobj)}
                 print(self.collection_url)
-                i = self.collection_url[:-2].rfind("/")
-                print(i)
-                response = requests.post(f'{self.collection_url}/attach', headers=headers, files=upload_file)
+                collectionID = self.collection_url.split("/")[-3]
+                print(collectionID)
+                print(f'{self.sbh_url}/{collectionID}/{collectionID}_collection/attach')
+                response = requests.post(f'{self.sbh_url}/{collectionID}/{collectionID}_collection/attach', headers=headers, files=upload_file)
                 print("status:", response.status_code)
                 print("headers:", response.headers)
                 print("body:", response.text)
