@@ -171,7 +171,23 @@ class XDC:
             self.sbh_token = response.text
         else:
             print("Unable to login to SynBioHub")
-
+            raise Exception(f"Unable to login to SynBioHub")
+        response = requests.get(
+            f'{self.sbh_url}/profile',
+            headers={
+                'Accept': 'text/plain',
+                'X-authorization': self.sbh_token
+                }
+            )
+        print("status:", response.status_code)
+        print("headers:", response.headers)
+        print("body:", response.text)
+        print("content: ", response.content)
+        if not response.ok:
+            raise Exception(f"Error accessing SynBioHub profile ({response.status_code}): {response.text}")
+        self.sbh_user = response.json()["username"]
+        print(self.sbh_user)
+        self.sbol_graph_uri = response.json()['graphUri']
 
     def _convert_to_sbol(self, sbol_version=2):
         print("converting to SBOL")
