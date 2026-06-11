@@ -336,8 +336,10 @@ class XDC:
                     print(self.collection_url)
                     collectionID = self.collection_url.split("/")[-3]
                     print(collectionID)
-                    print(f'{self.sbh_url}/{collectionID}/{collectionID}_collection/attach')
-                    response = requests.post(f'{self.sbh_url}/{collectionID}/{collectionID}_collection/attach', headers=headers, files=upload_file)
+                    collectionVersion = self.collection_url.split("/")[-1]
+                    print(collectionVersion)
+                    print(f'{self.sbh_url}/user/{self.sbh_user}/{collectionID}/{collectionID}_collection/{collectionVersion}/attach')
+                    response = requests.post(f'{self.sbh_url}/user/{self.sbh_user}/{collectionID}/{collectionID}_collection/{collectionVersion}/attach', headers=headers, files=upload_file)
                     print("status:", response.status_code)
                     print("headers:", response.headers)
                     print("body:", response.text)
@@ -353,8 +355,10 @@ class XDC:
                 print(self.collection_url)
                 collectionID = self.collection_url.split("/")[-3]
                 print(collectionID)
-                print(f'{self.sbh_url}/{collectionID}/{collectionID}_collection/attach')
-                response = requests.post(f'{self.sbh_url}/{collectionID}/{collectionID}_collection/attach', headers=headers, files=upload_file)
+                collectionVersion = self.collection_url.split("/")[-1]
+                print(collectionVersion)
+                print(f'{self.sbh_url}/user/{self.sbh_user}/{collectionID}/{collectionID}_collection/{collectionVersion}/attach')
+                response = requests.post(f'{self.sbh_url}/user/{self.sbh_user}/{collectionID}/{collectionID}_collection/{collectionVersion}/attach', headers=headers, files=upload_file)
                 print("status:", response.status_code)
                 print("headers:", response.headers)
                 print("body:", response.text)
