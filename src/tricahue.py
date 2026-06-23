@@ -270,7 +270,7 @@ class XDC:
         # Add flapjack annotations to the SBOL
         doc = sbol2.Document()
         doc.read(self.file_path_out)
-        subCollection = Collection(self.importType)
+        subCollection = sbol2.Collection(self.importType)
         doc.addCollection(subCollection)
         for tl in doc:
             subCollection.members.append(tl)
