@@ -272,6 +272,7 @@ class XDC:
         doc.read(self.file_path_out)
         subCollection = sbol2.Collection(self.importType)
         for tl in doc:
+            print(f"adding: {tl.identity}")
             subCollection.members.append(tl.identity)
             sbol_id = str(tl).split('/')[-2]
             if sbol_id in self.sbol_hash_map:
