@@ -114,6 +114,8 @@ class XDC:
         self.upload_url = None
         self.collection_url = None
 
+        self.importType = None
+
         try:
             self._convert_to_sbol()
         except Exception as e:
@@ -388,6 +390,8 @@ class XDC:
 
         print("Starting XDC run")
 
+        print(self.importType)
+
         try:
             self._log_in_sbh()
         except Exception as e:
@@ -472,7 +476,7 @@ class XDC:
     def upload_to_existing_collection(self, sbh_url, collection_url, sbh_overwrite: bool, 
                           sbh_user=None, sbh_pass=None, sbh_token=None,  
                           fj_url=None, fj_overwrite=None, 
-                          fj_user=None, fj_pass=None, fj_token=None):
+                          fj_user=None, fj_pass=None, fj_token=None, importType=None):
 
         self.sbh_url = sbh_url
         self.sbh_user = sbh_user
@@ -488,6 +492,7 @@ class XDC:
         self.fj_token = fj_token
         # TODO: Flapjack overwrite settings
         self.fj_overwrite = fj_overwrite
+        self.importType = importType
 
         return self.run(existing=True)
 
