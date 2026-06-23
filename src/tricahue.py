@@ -270,7 +270,10 @@ class XDC:
         # Add flapjack annotations to the SBOL
         doc = sbol2.Document()
         doc.read(self.file_path_out)
+        subCollection = Collection(self.importType)
+        doc.addCollection(subCollection)
         for tl in doc:
+            subCollection.members.append(tl)
             sbol_id = str(tl).split('/')[-2]
             if sbol_id in self.sbol_hash_map:
                 setattr(tl, 'Flapjack_ID',
@@ -389,8 +392,6 @@ class XDC:
     def run(self, existing):
 
         print("Starting XDC run")
-
-        print(self.importType)
 
         try:
             self._log_in_sbh()
