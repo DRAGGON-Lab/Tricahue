@@ -271,10 +271,8 @@ class XDC:
         doc = sbol2.Document()
         doc.read(self.file_path_out)
         subCollection = sbol2.Collection(self.importType)
-        subCollection.members = []
         for tl in doc:
-            print(f"adding: {tl.identity}")
-            subCollection.members.append(tl.identity)
+            subCollection.members = subCollection.members + [ tl.identity ]
             sbol_id = str(tl).split('/')[-2]
             if sbol_id in self.sbol_hash_map:
                 setattr(tl, 'Flapjack_ID',
@@ -282,6 +280,8 @@ class XDC:
                         'https://flapjack.rudge-lab.org/ID',
                             '0', '1', [], initial_value=f'https://{self.fj_url}/{self.sbol_hash_map[sbol_id]}'))
         #doc = sbol2.Document()
+        for member_uri in subCollection.members:
+            print(f"Member URI: {member_uri}")
         doc.addCollection(subCollection)
         doc.write(self.file_path_out_FJ)
 
