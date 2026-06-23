@@ -271,6 +271,7 @@ class XDC:
         doc = sbol2.Document()
         doc.read(self.file_path_out)
         subCollection = sbol2.Collection(self.importType)
+        subCollection.members = []
         for tl in doc:
             print(f"adding: {tl.identity}")
             subCollection.members.append(tl.identity)
