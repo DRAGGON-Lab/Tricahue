@@ -271,9 +271,8 @@ class XDC:
         doc = sbol2.Document()
         doc.read(self.file_path_out)
         subCollection = sbol2.Collection(self.importType)
-        doc.addCollection(subCollection)
         for tl in doc:
-            subCollection.members.append(tl)
+            subCollection.members.append(tl.identity)
             sbol_id = str(tl).split('/')[-2]
             if sbol_id in self.sbol_hash_map:
                 setattr(tl, 'Flapjack_ID',
@@ -281,6 +280,7 @@ class XDC:
                         'https://flapjack.rudge-lab.org/ID',
                             '0', '1', [], initial_value=f'https://{self.fj_url}/{self.sbol_hash_map[sbol_id]}'))
         #doc = sbol2.Document()
+        doc.addCollection(subCollection)
         doc.write(self.file_path_out_FJ)
 
         # SBH file upload
