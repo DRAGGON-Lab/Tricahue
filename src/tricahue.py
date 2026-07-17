@@ -45,7 +45,9 @@ class XDC:
         token to authenticate with SynBioHub
     status : str
         status of the process
-    
+    attachments : dict { str : filename or file object}
+        other files to upload to SBH
+
     Methods
     -------
     initialize()
@@ -60,10 +62,12 @@ class XDC:
         Uploads the SBOL file to Flapjack
     upload_to_sbh()
         Uploads the SBOL file to SynBioHub
+    upload_sbh_attachments()
+        Upload the attachments to the existing SBH
     run()
         Runs the entire process
     """
-    def __init__(self, input_excel_path, fj_url, fj_user, fj_pass, sbh_url, sbh_user, sbh_pass, sbh_collection, sbh_collection_description, sbh_overwrite, fj_overwrite, fj_token, sbh_token, homespace):
+    def __init__(self, input_excel_path, fj_url, fj_user, fj_pass, sbh_url, sbh_user, sbh_pass, sbh_collection, sbh_collection_description, sbh_overwrite, fj_overwrite, fj_token, sbh_token, homespace='https://example.org', attachments=None, attachTo=None):
         self.input_excel_path = input_excel_path
         self.fj_url = fj_url
         self.fj_user = fj_user
@@ -77,6 +81,8 @@ class XDC:
         self.fj_overwrite = fj_overwrite
         self.fj_token = fj_token
         self.sbh_token = sbh_token
+        self.attachments = attachments
+        self.attachTo = attachTo
         self.input_excel = pd.ExcelFile(self.input_excel_path)
         self.x2f = None
         self.sbol_doc = None
@@ -118,7 +124,12 @@ class XDC:
 
     def log_in_sbh(self):
         # SBH Login
-        if self.sbh_token is None:
+        if self.sbh_token:
+            response = requests.post(
+                f'{self.sbh_url}/login',
+                headers={'Accept': 'text/plain', 'X-Authorization': self.sbh_token}
+            )
+        elif self.sbh_user and self.sbh_pass:
             response = requests.post(
                 f'{self.sbh_url}/login',
                 headers={'Accept': 'text/plain'},
@@ -129,10 +140,7 @@ class XDC:
             )
             self.sbh_token = response.text
         else:
-            response = requests.post(
-                f'{self.sbh_url}/login',
-                headers={'Accept': 'text/plain', 'X-Authorization': self.sbh_token}
-            )
+            print("Unable to login to SynBioHub")
 
     def convert_to_sbol(self, sbol_version=2):
         excel2sbol.converter(file_path_in = self.input_excel_path, 
@@ -188,10 +196,6 @@ class XDC:
         #doc = sbol2.Document()
         doc.write(self.file_path_out2)
 
-        if self.sbh_overwrite:
-            sbh_overwrite = '1'
-        else:
-            sbh_overwrite = '0'
         # SBH file upload
         response = requests.post(
             f'{self.sbh_url}/submit',
@@ -214,22 +218,56 @@ class XDC:
 
         if response.text == "Submission id and version already in use":
             print('not submitted')
+            self.upload_url = None
             raise AttributeError(f'The collection ({self.sbh_collection}) could not be submitted to synbiohub as the collection already exists and overite is not on.')
         # if response.text == "Successfully uploaded":
         #      success = True
         #self.status = "Uploaded to SynBioHub"
+        response.raise_for_status()
         return f'{self.sbol_graph_uri}/{self.sbh_collection}/{self.sbh_collection}_collection/1'
 
-        
+    def upload_sbh_attachments(self):
 
+        headers = {'Accept': 'text/plain', 'X-authorization': self.sbh_token}
+        self.version = '1'
+
+        for location, file in self.attachments.items():
+            upload_url = '/'.join(s.strip('/') for s in [self.sbh_url, 'user', self.sbh_user, self.sbh_collection, location, self.version])
+
+            if isinstance(file, str):
+                with open(file, 'rb') as fobj:
+                    upload_file = {'file': (os.path.basename(file), fobj)}
+                    # print(upload_url)
+                    response = requests.post(f'{upload_url}/attach', headers=headers, files=upload_file)
+                    response.raise_for_status()
+                    print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
+            else:
+                # file-like objects
+                filename = getattr(file, 'filename', 'attachment')
+                fobj = getattr(file, 'stream', None) or getattr(file, 'file', None) or file
+                upload_file = {'file': (filename, fobj)}
+                # print(upload_url)
+                response = requests.post(f'{upload_url}/attach', headers=headers, files=upload_file)
+                response.raise_for_status()
+                print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
+        
     def run(self):
+        print("Starting XDC run")
         self.initialize()
         self.log_in_fj()
         self.log_in_sbh()
-        self.convert_to_sbol()
-        self.generate_sbol_hash_map()
-        self.upload_to_fj()
-        self.upload_to_sbh()
+        if (self.sbh_token):
+            self.convert_to_sbol()
+            self.generate_sbol_hash_map()
+            if self.fj_token:
+                self.upload_to_fj()
+            self.collection_url = self.upload_to_sbh()
+            if self.attachments:
+                self.upload_sbh_attachments()
+            print("XDC run complete")
+            return self.collection_url
+        raise AttributeError(f'Unable to login to SynBioHub')
+
 
 
 class XDE:
@@ -486,7 +524,7 @@ class XDE:
 
         return
     
-    def extractData(self, file_list, sheet_to_read_from, time_col_name, data_cols_offset, num_rows_btwn_data=0):
+    def extractData(self, file_list, sheet_to_read_from, time_col_name='Time', data_cols_offset=0, num_rows_btwn_data=0):
         """
         Full run; extracts data from the input excel files and writes it to the XDC sheet.
         """

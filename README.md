@@ -16,14 +16,14 @@ Tricahue simplifies the standardization, upload, and connection of data on distr
 
 ## Installation
 
-Installing Tricahue is super simple! 
+Installing Xperimental-Data-Connector is super simple! 
 
 Do:
 
 `pip install tricahue`
 
 
-## Tricahue allows you to:
+## Xperimental-Data-Connector allows you to:
 
 - Extract experimental data from Excel, CSV and TSV files
 - Standardize experimental data into Tidy format
