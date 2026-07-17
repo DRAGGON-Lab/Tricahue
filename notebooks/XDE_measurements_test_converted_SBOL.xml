@@ -1,0 +1,1021 @@
+<rdf:RDF xmlns:brick="https://brickschema.org/schema/Brick#" xmlns:csvw="http://www.w3.org/ns/csvw#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcat="http://www.w3.org/ns/dcat#" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcam="http://purl.org/dc/dcam/" xmlns:doap="http://usefulinc.com/ns/doap#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:odrl="http://www.w3.org/ns/odrl/2/" xmlns:org="http://www.w3.org/ns/org#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:prof="http://www.w3.org/ns/dx/prof/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:qb="http://purl.org/linked-data/cube#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:schema="https://schema.org/" xmlns:sh="http://www.w3.org/ns/shacl#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:sosa="http://www.w3.org/ns/sosa/" xmlns:ssn="http://www.w3.org/ns/ssn/" xmlns:time="http://www.w3.org/2006/time#" xmlns:vann="http://purl.org/vocab/vann/" xmlns:void="http://rdfs.org/ns/void#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:fj="https://flapjack.rudge-lab.org/" xmlns:sbol="http://sbols.org/v2#">
+  <sbol:Collection rdf:about="https://example.org/Study1/1">
+    <dcterms:description>Behaviour&#160;of&#160;genetic&#160;circuits&#160;containing&#160;different&#160;degradation&#160;in&#160;FluoPi's&#160;image&#160;based&#160;experiments</dcterms:description>
+    <fj:ID rdf:resource="placeholder"/>
+    <dcterms:title>Reporter behaviour</dcterms:title>
+    <sbol:displayId>Study1</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Study1"/>
+    <prov:wasDerivedFrom rdf:resource="https://doi.org/10.1371/journal.pone.0187163"/>
+  </sbol:Collection>
+  <sbol:Experiment rdf:about="https://example.org/ExpNOTs_GFP/1">
+    <fj:temperature>37</fj:temperature>
+    <sbol:displayId>ExpNOTs_GFP</sbol:displayId>
+    <dcterms:title>GFP Plate 1</dcterms:title>
+    <fj:machine>HTX Synergy</fj:machine>
+    <dcterms:description>GFP Plate 1</dcterms:description>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://example.org/ExpNOTs_GFP"/>
+  </sbol:Experiment>
+  <sbol:Experiment rdf:about="https://example.org/ExpNOTs_GFP_trans/1">
+    <sbol:experimentalData rdf:resource="https://example.orgSample48"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample17"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample25"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample66"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample23"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample71"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample57"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample90"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample80"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample95"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample50"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/ExpNOTs_GFP_trans"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample33"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample44"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample93"/>
+    <sbol:version>1</sbol:version>
+    <sbol:experimentalData rdf:resource="https://example.orgSample53"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample37"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample74"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample46"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample60"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample15"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample1"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample16"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample63"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample7"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample87"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample89"/>
+    <dcterms:title>GFP Plate 2</dcterms:title>
+    <sbol:experimentalData rdf:resource="https://example.orgSample56"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample82"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample38"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample62"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample70"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample86"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample65"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample58"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample96"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample28"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample36"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample52"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample31"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample84"/>
+    <sbol:displayId>ExpNOTs_GFP_trans</sbol:displayId>
+    <sbol:experimentalData rdf:resource="https://example.orgSample77"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample45"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample72"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample41"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample8"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample22"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample10"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample24"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample75"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample83"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample59"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample18"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample64"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample20"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample4"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample39"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample3"/>
+    <dcterms:description>GFP Plate 2</dcterms:description>
+    <sbol:experimentalData rdf:resource="https://example.orgSample49"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample2"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample94"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample29"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample40"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample42"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample30"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample47"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample32"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample68"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample11"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample19"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample69"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample67"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample14"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample55"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample35"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample13"/>
+    <fj:temperature>37</fj:temperature>
+    <sbol:experimentalData rdf:resource="https://example.orgSample43"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample34"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample5"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample88"/>
+    <fj:machine>HTX Synergy</fj:machine>
+    <sbol:experimentalData rdf:resource="https://example.orgSample12"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample61"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample9"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample21"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample27"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample79"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample78"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample76"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample85"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample91"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample6"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample92"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample51"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample54"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample81"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample73"/>
+    <sbol:experimentalData rdf:resource="https://example.orgSample26"/>
+  </sbol:Experiment>
+  <sbol:Experiment rdf:about="https://example.org/ExpNOTs_OD/1">
+    <dcterms:description>GFP Plate 3</dcterms:description>
+    <fj:temperature>37</fj:temperature>
+    <fj:machine>HTX Synergy</fj:machine>
+    <sbol:persistentIdentity rdf:resource="https://example.org/ExpNOTs_OD"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <dcterms:title>GFP Plate 3</dcterms:title>
+    <sbol:displayId>ExpNOTs_OD</sbol:displayId>
+  </sbol:Experiment>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample1/1">
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>1</fj:row>
+    <fj:column>1</fj:column>
+    <sbol:displayId>Sample1</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample1"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample2/1">
+    <fj:column>2</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample2"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample2</sbol:displayId>
+    <fj:row>1</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample3/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample3"/>
+    <fj:column>3</fj:column>
+    <sbol:displayId>Sample3</sbol:displayId>
+    <fj:row>1</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample4/1">
+    <fj:column>4</fj:column>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample4</sbol:displayId>
+    <fj:row>1</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample4"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample5/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>1</fj:row>
+    <sbol:displayId>Sample5</sbol:displayId>
+    <fj:column>5</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample5"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample6/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample6"/>
+    <fj:column>6</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>1</fj:row>
+    <sbol:displayId>Sample6</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample7/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample7"/>
+    <sbol:displayId>Sample7</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>1</fj:row>
+    <fj:column>7</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample8/1">
+    <sbol:version>1</sbol:version>
+    <fj:row>1</fj:row>
+    <sbol:displayId>Sample8</sbol:displayId>
+    <fj:column>8</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample8"/>
+    <fj:ID rdf:resource="placeholder"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample9/1">
+    <sbol:displayId>Sample9</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample9"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>1</fj:row>
+    <fj:column>9</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample10/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample10"/>
+    <fj:column>10</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample10</sbol:displayId>
+    <fj:row>1</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample11/1">
+    <fj:column>11</fj:column>
+    <sbol:displayId>Sample11</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample11"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>1</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample12/1">
+    <sbol:displayId>Sample12</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>1</fj:row>
+    <fj:column>12</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample12"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample13/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <fj:column>1</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample13"/>
+    <sbol:displayId>Sample13</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample14/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample14"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample14</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <fj:column>2</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample15/1">
+    <fj:row>2</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample15"/>
+    <sbol:displayId>Sample15</sbol:displayId>
+    <fj:column>3</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample16/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample16"/>
+    <sbol:displayId>Sample16</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <fj:column>4</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample17/1">
+    <fj:column>5</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample17"/>
+    <fj:row>2</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample17</sbol:displayId>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample18/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample18"/>
+    <fj:column>6</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <sbol:displayId>Sample18</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample19/1">
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample19"/>
+    <fj:column>7</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample19</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample20/1">
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample20"/>
+    <sbol:displayId>Sample20</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:column>8</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample21/1">
+    <fj:column>9</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample21</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample21"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample22/1">
+    <fj:column>10</fj:column>
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample22"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample22</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample23/1">
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <fj:column>11</fj:column>
+    <sbol:displayId>Sample23</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample23"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample24/1">
+    <fj:column>12</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample24"/>
+    <sbol:displayId>Sample24</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <fj:row>2</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample25/1">
+    <fj:row>3</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample25</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample25"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>1</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample26/1">
+    <fj:row>3</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample26</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample26"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>2</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample27/1">
+    <sbol:displayId>Sample27</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample27"/>
+    <fj:row>3</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:column>3</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample28/1">
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample28"/>
+    <sbol:displayId>Sample28</sbol:displayId>
+    <fj:column>4</fj:column>
+    <fj:row>3</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample29/1">
+    <fj:column>5</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample29"/>
+    <fj:row>3</fj:row>
+    <sbol:displayId>Sample29</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample30/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample30"/>
+    <fj:row>3</fj:row>
+    <sbol:displayId>Sample30</sbol:displayId>
+    <fj:column>6</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample31/1">
+    <fj:row>3</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample31</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <fj:column>7</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample31"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample32/1">
+    <fj:row>3</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>8</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample32"/>
+    <sbol:displayId>Sample32</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample33/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample33"/>
+    <fj:column>9</fj:column>
+    <fj:row>3</fj:row>
+    <sbol:displayId>Sample33</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample34/1">
+    <fj:column>10</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample34</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample34"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>3</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample35/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample35</sbol:displayId>
+    <fj:column>11</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample35"/>
+    <fj:row>3</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample36/1">
+    <sbol:version>1</sbol:version>
+    <fj:column>12</fj:column>
+    <fj:row>3</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample36"/>
+    <sbol:displayId>Sample36</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample37/1">
+    <sbol:displayId>Sample37</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>4</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample37"/>
+    <fj:column>1</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample38/1">
+    <fj:row>4</fj:row>
+    <fj:column>2</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample38"/>
+    <sbol:displayId>Sample38</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample39/1">
+    <fj:column>3</fj:column>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>4</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample39"/>
+    <sbol:displayId>Sample39</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample40/1">
+    <sbol:version>1</sbol:version>
+    <fj:row>4</fj:row>
+    <fj:column>4</fj:column>
+    <sbol:displayId>Sample40</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample40"/>
+    <fj:ID rdf:resource="placeholder"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample41/1">
+    <fj:row>4</fj:row>
+    <fj:column>5</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample41"/>
+    <sbol:displayId>Sample41</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample42/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample42"/>
+    <fj:column>6</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>4</fj:row>
+    <sbol:displayId>Sample42</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample43/1">
+    <sbol:displayId>Sample43</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>7</fj:column>
+    <fj:row>4</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample43"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample44/1">
+    <fj:column>8</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample44</sbol:displayId>
+    <fj:row>4</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample44"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample45/1">
+    <fj:column>9</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample45"/>
+    <sbol:displayId>Sample45</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>4</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample46/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample46"/>
+    <fj:column>10</fj:column>
+    <fj:row>4</fj:row>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample46</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample47/1">
+    <sbol:version>1</sbol:version>
+    <fj:row>4</fj:row>
+    <sbol:displayId>Sample47</sbol:displayId>
+    <fj:column>11</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample47"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample48/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample48"/>
+    <sbol:displayId>Sample48</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>4</fj:row>
+    <sbol:version>1</sbol:version>
+    <fj:column>12</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample49/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample49"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>1</fj:column>
+    <sbol:displayId>Sample49</sbol:displayId>
+    <fj:row>5</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample50/1">
+    <fj:row>5</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:column>2</fj:column>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample50</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample50"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample51/1">
+    <fj:row>5</fj:row>
+    <fj:column>3</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample51"/>
+    <sbol:displayId>Sample51</sbol:displayId>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample52/1">
+    <fj:row>5</fj:row>
+    <fj:column>4</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample52"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample52</sbol:displayId>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample53/1">
+    <fj:column>5</fj:column>
+    <fj:row>5</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample53"/>
+    <sbol:displayId>Sample53</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample54/1">
+    <sbol:displayId>Sample54</sbol:displayId>
+    <fj:row>5</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample54"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:column>6</fj:column>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample55/1">
+    <sbol:displayId>Sample55</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample55"/>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>5</fj:row>
+    <fj:column>7</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample56/1">
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample56</sbol:displayId>
+    <fj:row>5</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample56"/>
+    <fj:column>8</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample57/1">
+    <fj:column>9</fj:column>
+    <fj:row>5</fj:row>
+    <sbol:displayId>Sample57</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample57"/>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample58/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample58"/>
+    <fj:column>10</fj:column>
+    <fj:row>5</fj:row>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample58</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample59/1">
+    <sbol:version>1</sbol:version>
+    <fj:row>5</fj:row>
+    <fj:column>11</fj:column>
+    <sbol:displayId>Sample59</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample59"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample60/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample60"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>12</fj:column>
+    <sbol:displayId>Sample60</sbol:displayId>
+    <fj:row>5</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample61/1">
+    <sbol:displayId>Sample61</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>1</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample61"/>
+    <fj:row>6</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample62/1">
+    <fj:column>2</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample62"/>
+    <fj:row>6</fj:row>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample62</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample63/1">
+    <sbol:displayId>Sample63</sbol:displayId>
+    <fj:row>6</fj:row>
+    <fj:column>3</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample63"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample64/1">
+    <fj:column>4</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample64"/>
+    <sbol:displayId>Sample64</sbol:displayId>
+    <fj:row>6</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample65/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample65"/>
+    <fj:column>5</fj:column>
+    <fj:row>6</fj:row>
+    <sbol:displayId>Sample65</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample66/1">
+    <fj:row>6</fj:row>
+    <fj:column>6</fj:column>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample66"/>
+    <sbol:displayId>Sample66</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample67/1">
+    <fj:row>6</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>7</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample67"/>
+    <sbol:displayId>Sample67</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample68/1">
+    <sbol:displayId>Sample68</sbol:displayId>
+    <fj:column>8</fj:column>
+    <fj:row>6</fj:row>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample68"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample69/1">
+    <sbol:displayId>Sample69</sbol:displayId>
+    <fj:row>6</fj:row>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample69"/>
+    <fj:column>9</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample70/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample70"/>
+    <sbol:displayId>Sample70</sbol:displayId>
+    <fj:row>6</fj:row>
+    <fj:column>10</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample71/1">
+    <fj:row>6</fj:row>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample71</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample71"/>
+    <fj:column>11</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample72/1">
+    <sbol:displayId>Sample72</sbol:displayId>
+    <fj:row>6</fj:row>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:column>12</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample72"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample73/1">
+    <sbol:displayId>Sample73</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample73"/>
+    <fj:column>1</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>7</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample74/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>7</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample74"/>
+    <fj:column>2</fj:column>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample74</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample75/1">
+    <sbol:displayId>Sample75</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample75"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:column>3</fj:column>
+    <sbol:version>1</sbol:version>
+    <fj:row>7</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample76/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>7</fj:row>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample76"/>
+    <fj:column>4</fj:column>
+    <sbol:displayId>Sample76</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample77/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>7</fj:row>
+    <sbol:displayId>Sample77</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample77"/>
+    <fj:column>5</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample78/1">
+    <fj:column>6</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample78"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>7</fj:row>
+    <sbol:displayId>Sample78</sbol:displayId>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample79/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample79"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>7</fj:column>
+    <sbol:displayId>Sample79</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>7</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample80/1">
+    <fj:column>8</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample80"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>7</fj:row>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample80</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample81/1">
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample81</sbol:displayId>
+    <fj:row>7</fj:row>
+    <fj:column>9</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample81"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample82/1">
+    <fj:column>10</fj:column>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>7</fj:row>
+    <sbol:displayId>Sample82</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample82"/>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample83/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample83"/>
+    <fj:column>11</fj:column>
+    <sbol:displayId>Sample83</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>7</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample84/1">
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:row>7</fj:row>
+    <fj:column>12</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample84"/>
+    <sbol:displayId>Sample84</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample85/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample85"/>
+    <fj:row>8</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>1</fj:column>
+    <sbol:displayId>Sample85</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample86/1">
+    <fj:row>8</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample86"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample86</sbol:displayId>
+    <fj:column>2</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample87/1">
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample87</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample87"/>
+    <fj:row>8</fj:row>
+    <fj:ID rdf:resource="placeholder"/>
+    <fj:column>3</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample88/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>4</fj:column>
+    <sbol:displayId>Sample88</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample88"/>
+    <fj:row>8</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample89/1">
+    <fj:row>8</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample89"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample89</sbol:displayId>
+    <fj:column>5</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample90/1">
+    <fj:row>8</fj:row>
+    <fj:column>6</fj:column>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample90"/>
+    <sbol:displayId>Sample90</sbol:displayId>
+    <sbol:version>1</sbol:version>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample91/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample91"/>
+    <fj:row>8</fj:row>
+    <sbol:displayId>Sample91</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:column>7</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample92/1">
+    <sbol:displayId>Sample92</sbol:displayId>
+    <fj:column>8</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample92"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <fj:row>8</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample93/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample93</sbol:displayId>
+    <fj:column>9</fj:column>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample93"/>
+    <fj:row>8</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample94/1">
+    <fj:row>8</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample94"/>
+    <fj:column>10</fj:column>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Sample94</sbol:displayId>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample95/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample95"/>
+    <sbol:displayId>Sample95</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <fj:column>11</fj:column>
+    <fj:row>8</fj:row>
+  </sbol:ExperimentalData>
+  <sbol:ExperimentalData rdf:about="https://example.org/Sample96/1">
+    <fj:row>8</fj:row>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Sample96"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Sample96</sbol:displayId>
+    <fj:column>12</fj:column>
+  </sbol:ExperimentalData>
+  <sbol:ModuleDefinition rdf:about="https://example.org/SampleDesign1/1">
+    <prov:wasDerivedFrom rdf:resource="https://example.orgRep_LOW_degrate_plasmid"/>
+    <sbol:displayId>SampleDesign1</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <prov:wasDerivedFrom rdf:resource="https://example.orgEcoliT7"/>
+    <prov:wasDerivedFrom rdf:resource="https://example.orgM9Glucose"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/SampleDesign1"/>
+  </sbol:ModuleDefinition>
+  <sbol:ModuleDefinition rdf:about="https://example.org/SampleDesign2/1">
+    <prov:wasDerivedFrom rdf:resource="https://example.orgEcoliT7"/>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://example.org/SampleDesign2"/>
+    <prov:wasDerivedFrom rdf:resource="https://example.orgRep_HIGH_degrate_plasmid"/>
+    <sbol:displayId>SampleDesign2</sbol:displayId>
+    <prov:wasDerivedFrom rdf:resource="https://example.orgM9Glucose"/>
+  </sbol:ModuleDefinition>
+  <sbol:ModuleDefinition rdf:about="https://example.org/M9Glucose/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/M9Glucose"/>
+    <sbol:displayId>M9Glucose</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <dcterms:description>induction</dcterms:description>
+    <fj:mediaName>M9Glucose</fj:mediaName>
+  </sbol:ModuleDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/Signal1/1">
+    <sbol:persistentIdentity rdf:resource="https://example.org/Signal1"/>
+    <sbol:version>1</sbol:version>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:displayId>Signal1</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <fj:signalColor>black</fj:signalColor>
+    <dcterms:description>biomass</dcterms:description>
+    <dcterms:title>Biomass</dcterms:title>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/Signal9/1">
+    <dcterms:title>GFP</dcterms:title>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Signal9"/>
+    <sbol:version>1</sbol:version>
+    <fj:signalColor>green</fj:signalColor>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:displayId>Signal9</sbol:displayId>
+    <dcterms:description>fluorescent</dcterms:description>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/EcoliT7/1">
+    <dcterms:description>E.coli T7</dcterms:description>
+    <sbol:displayId>EcoliT7</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <dcterms:title>E.coli T7</dcterms:title>
+    <sbol:persistentIdentity rdf:resource="https://example.org/EcoliT7"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/Chemical1/1">
+    <sbol:displayId>Chemical1</sbol:displayId>
+    <fj:pubchemId>Pubchem 1</fj:pubchemId>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Chemical1"/>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#SmallMolecule"/>
+    <dcterms:title>ATC</dcterms:title>
+    <dcterms:description>Inducer</dcterms:description>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/Chemical2/1">
+    <sbol:displayId>Chemical2</sbol:displayId>
+    <fj:pubchemId>Pubchem 2</fj:pubchemId>
+    <dcterms:description>Inducer</dcterms:description>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#SmallMolecule"/>
+    <dcterms:title>IPTG</dcterms:title>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Chemical2"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/Rep_HIGH_degrate_plasmid/1">
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Rep_HIGH_degrate_plasmid"/>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000155"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>Rep_HIGH_degrate_plasmid</sbol:displayId>
+    <dcterms:title>Repressilator Low Degradation</dcterms:title>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/Rep_LOW_degrate_plasmid/1">
+    <dcterms:title>Repressilator High Degradation</dcterms:title>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000155"/>
+    <sbol:displayId>Rep_LOW_degrate_plasmid</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://example.org/Rep_LOW_degrate_plasmid"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/DNA1/1">
+    <sbol:displayId>DNA1</sbol:displayId>
+    <dcterms:title>Rep_HIGH_degrate</dcterms:title>
+    <sbol:persistentIdentity rdf:resource="https://example.org/DNA1"/>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:version>1</sbol:version>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000804"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/DNA2/1">
+    <sbol:displayId>DNA2</sbol:displayId>
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000804"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/DNA2"/>
+    <dcterms:title>Rep_LOW_degrate</dcterms:title>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://example.org/DNA3/1">
+    <fj:ID rdf:resource="placeholder"/>
+    <sbol:persistentIdentity rdf:resource="https://example.org/DNA3"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:version>1</sbol:version>
+    <dcterms:title>Reporter</dcterms:title>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000804"/>
+    <sbol:displayId>DNA3</sbol:displayId>
+  </sbol:ComponentDefinition>
+</rdf:RDF>

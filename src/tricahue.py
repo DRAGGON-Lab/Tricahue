@@ -8,11 +8,12 @@ import pandas as pd
 from openpyxl import load_workbook
 import numpy as np
 import re
+import traceback
 
 class XDC:
 
-    """XDC class to upload excel file to SynBioHub and Flapjack.
-
+    """
+    XDC class to upload excel file to SynBioHub and Flapjack.
     ...
 
     Attributes
@@ -31,9 +32,11 @@ class XDC:
         username of the SynBioHub instance
     sbh_pass : str
         password of the SynBioHub instance
-    sbh_collection : str
-        collection to upload the SBOL file to
-    sbh_collection_description : str
+    sbh_collection_name : str
+        name of collection to upload the SBOL file to
+    sbh_collection_url : str
+        url of collection to upload the SBOL file to
+    sbh_description : str
         description of the collection
     sbh_overwrite : bool
         whether to overwrite the SBOL file if it already exists
@@ -43,74 +46,97 @@ class XDC:
         token to authenticate with Flapjack
     sbh_token : str
         token to authenticate with SynBioHub
-    status : str
-        status of the process
     attachments : dict { str : filename or file object}
         other files to upload to SBH
 
     Methods
     -------
-    initialize()
-        Initializes the X2F object
-    log_in_fj()
+    __init__()
+        Initialize, take excel template and convert it to sbol
+    upload_to_new_collection()
+        Uploads template and attachments to a new SynBioHub collection, and FJ (optional)
+        Requires a collection name
+    upload_to_existing_collection()
+        Uploads template and attachments to an existing SynBioHub collection, and FJ (optional)
+        Requires the collection URI
+    get_sbol_document()
+        Helper method to access the converted SBOL document
+
+    _log_in_fj()
         Logs into Flapjack
-    log_in_sbh()
+    _log_in_sbh()
         Logs into SynBioHub
-    convert_to_sbol()
+    _convert_to_sbol()
         Converts the input excel file to SBOL format
-    upload_to_fj()
+    _generate_sbol_hash_map()
+        Generates the SBOL object mapping
+    _upload_to_fj()
         Uploads the SBOL file to Flapjack
-    upload_to_sbh()
+    _upload_to_sbh()
         Uploads the SBOL file to SynBioHub
-    upload_sbh_attachments()
+    _upload_sbh_attachments()
         Upload the attachments to the existing SBH
-    run()
-        Runs the entire process
+    _run()
+        Runs the XDC process internally
+
     """
-    def __init__(self, input_excel_path, fj_url, fj_user, fj_pass, sbh_url, sbh_user, sbh_pass, sbh_collection, sbh_collection_description, sbh_overwrite, fj_overwrite, fj_token, sbh_token, homespace='https://example.org', attachments=None, attachTo=None):
+    def __init__(self, input_excel_path, attachments=None, homespace='https://example.org/'):
         self.input_excel_path = input_excel_path
-        self.fj_url = fj_url
-        self.fj_user = fj_user
-        self.fj_pass = fj_pass
-        self.sbh_url = sbh_url
-        self.sbh_user = sbh_user
-        self.sbh_pass = sbh_pass
-        self.sbh_collection = sbh_collection
-        self.sbh_collection_description = sbh_collection_description
-        self.sbh_overwrite = sbh_overwrite
-        self.fj_overwrite = fj_overwrite
-        self.fj_token = fj_token
-        self.sbh_token = sbh_token
         self.attachments = attachments
-        self.attachTo = attachTo
-        self.input_excel = pd.ExcelFile(self.input_excel_path)
         self.x2f = None
-        self.sbol_doc = None
-        self.sbol_fj_doc = None
+        self.sbol_doc = sbol2.Document()
+        self.sbol_fj_doc = sbol2.Document()
         self.sbol_graph_uri = None
-        self.file_path_out = f'{sbh_collection}_converted_SBOL.xml'
-        self.file_path_out2 = f'{sbh_collection}_SBOL_Fj_doc.xml'
+        if isinstance(input_excel_path, str):
+            self.sbh_collection_name = re.search(r'[\w-]+?(?=\.)', input_excel_path).group()
+        else:
+            self.sbh_collection_name = 'New_collection'
+        self.file_path_out = f'{self.sbh_collection_name}_converted_SBOL.xml'
+        self.file_path_out_FJ = f'{self.sbh_collection_name}_SBOL_Fj_doc.xml'
         self.homespace = homespace
         self.sbol_hash_map = {}
 
-    def initialize(self):
-        self.x2f = X2F(excel_path=self.input_excel_path,
-                    fj_url=self.fj_url, 
-                    overwrite=self.fj_overwrite)
-        if self.sbh_collection_description is None:
-            self.sbh_collection_description = 'Collection of SBOL files uploaded from Tricahue'
-        if self.sbol_doc is None:
-            self.sbol_doc = sbol2.Document()
-        if self.sbol_fj_doc is None:
-            self.sbol_fj_doc = sbol2.Document()
+        # Set defaults
+        self.fj_url = None
+        self.fj_user = None
+        self.fj_pass = None
+        self.fj_overwrite = False
+        self.fj_token = None
+
+        self.sbh_url = None
+        self.sbh_user = None
+        self.sbh_pass = None
+        self.sbh_token = None
+        self.sbh_description = None
+        self.sbh_overwrite_num = 0
+        self.sbh_collection_url = None
+
+        self.upload_url = None
+        self.collection_url = None
+
+        self.importType = None
+
+        try:
+            self._convert_to_sbol()
+        except Exception as e:
+            print('SBOL Conversion Failed')
+            raise Exception(f"Error during SBOL conversion: {e}") from e
+
+    def _log_in_fj(self):
+        print("logging into fj")
+        if not self.fj_url:
+            print('No Flapjack URL provided')
+            self.fj_token = None
+            return
         
-    def log_in_fj(self):
         self.x2f = X2F(excel_path=self.input_excel_path, 
-                    fj_url=self.fj_url, 
-                    overwrite=self.fj_overwrite)
+                       fj_url=self.fj_url, 
+                       overwrite=self.fj_overwrite)
         
         if self.fj_token:
-            self.x2f.fj.log_in_token(username=self.fj_user, access_token=None, refresh_token=self.fj_token)
+            self.x2f.fj.log_in_token(username=self.fj_user, 
+                                     access_token=None, 
+                                     refresh_token=self.fj_token)
             self.x2f.fj.refresh()
 
         elif self.fj_user and self.fj_pass:
@@ -119,16 +145,16 @@ class XDC:
         
         else:
             print('Unable to authenticate into Flapjack')
+            self.fj_token = None
             #TODO check token validity
         
 
-    def log_in_sbh(self):
+    def _log_in_sbh(self):
         # SBH Login
+        print("logging into SBH")
         if self.sbh_token:
-            response = requests.post(
-                f'{self.sbh_url}/login',
-                headers={'Accept': 'text/plain', 'X-Authorization': self.sbh_token}
-            )
+            pass
+            # already logged in, checks validity in next step
         elif self.sbh_user and self.sbh_pass:
             response = requests.post(
                 f'{self.sbh_url}/login',
@@ -138,18 +164,65 @@ class XDC:
                     'password' : self.sbh_pass,
                     }
             )
+            print("status:", response.status_code)
+            print("headers:", response.headers)
+            print("body:", response.text)
+            print("content: ", response.content)
+            if not response.ok:
+                raise Exception(f"SynBioHub login failed ({response.status_code}): {response.text}")
             self.sbh_token = response.text
         else:
             print("Unable to login to SynBioHub")
+            raise Exception(f"Unable to login to SynBioHub")
+        response = requests.get(
+            f'{self.sbh_url}/profile',
+            headers={
+                'Accept': 'text/plain',
+                'X-authorization': self.sbh_token
+                }
+            )
+        print("status:", response.status_code)
+        print("headers:", response.headers)
+        print("body:", response.text)
+        print("content: ", response.content)
+        if not response.ok:
+            raise Exception(f"Error accessing SynBioHub profile ({response.status_code}): {response.text}")
+        self.sbh_user = response.json()["username"]
+        print(self.sbh_user)
+        self.sbol_graph_uri = response.json()['graphUri']
 
-    def convert_to_sbol(self, sbol_version=2):
-        excel2sbol.converter(file_path_in = self.input_excel_path, 
-                file_path_out = self.file_path_out, homespace=self.homespace, sbol_version=sbol_version)
-        doc = sbol2.Document()
-        doc.read(self.file_path_out)
-        self.sbol_doc = doc        
+    def _convert_to_sbol(self, sbol_version=2):
+        print("converting to SBOL")
+        try:
+            sbol2.Config.setOption(sbol2.ConfigOptions.SBOL_COMPLIANT_URIS, True)
+            sbol2.Config.setOption(sbol2.ConfigOptions.SBOL_TYPED_URIS, False)
+            excel2sbol.converter(file_path_in = self.input_excel_path, 
+                    file_path_out = self.file_path_out, homespace=self.homespace, sbol_version=sbol_version)
+            doc = sbol2.Document()
+            doc.read(self.file_path_out)
+            print("conversion complete")
+            self.sbol_doc = doc
+        except Exception as e:
+            print("CONVERSION FAILED --- SEE MESSAGE")
+            print(f"{type(e).__name__}: {e}")
 
-    def generate_sbol_hash_map(self):
+            # Print full traceback so package-level failures are visible.
+            traceback.print_exc()
+
+            # If present, print chained exceptions explicitly for deeper root-cause debugging.
+            if e.__cause__ is not None:
+                print("\nDirect cause:")
+                print(f"{type(e.__cause__).__name__}: {e.__cause__}")
+                print("".join(traceback.format_exception(type(e.__cause__), e.__cause__, e.__cause__.__traceback__)))
+
+            if e.__context__ is not None and e.__context__ is not e.__cause__:
+                print("\nContext:")
+                print(f"{type(e.__context__).__name__}: {e.__context__}")
+                print("".join(traceback.format_exception(type(e.__context__), e.__context__, e.__context__.__traceback__)))
+            raise
+
+    def _generate_sbol_hash_map(self):
+        print("generating sbol hash map")
         # Pull graph uri from synbiohub
         response = requests.get(
             f'{self.sbh_url}/profile',
@@ -158,8 +231,16 @@ class XDC:
                 'X-authorization': self.sbh_token
                 }
         )
+        print("status:", response.status_code)
+        print("headers:", response.headers)
+        print("body:", response.text)
+        print("content: ", response.content)
+        if not response.ok:
+            raise Exception(f"Error accessing SynBioHub profile ({response.status_code}): {response.text}")
+        self.sbh_user = response.json()["username"]
+        print(self.sbh_user)
         self.sbol_graph_uri = response.json()['graphUri']
-        sbol_collec_url = f'{self.sbol_graph_uri}/{self.sbh_collection}'
+        sbol_collec_url = f'{self.sbol_graph_uri}/{self.sbh_collection_name}'
 
         # create hashmap of flapjack id to sbol uri
         self.sbol_hash_map = {}
@@ -173,100 +254,250 @@ class XDC:
             self.sbol_hash_map[sbol_name] = sbol_uri
 
 
-    def upload_to_fj(self, header_rows=3):
+    def _upload_to_fj(self, header_rows=3):
+        print("")
         self.x2f.sbol_hash_map = self.sbol_hash_map
         self.x2f.generate_sheets_to_object_mapping()
         self.x2f.index_skiprows = header_rows
-        # self.x2f.create_df()
+        self.x2f.create_df()
         # change to upload_object_in_sheets
-        self.x2f.upload_all() 
+        # self.x2f.upload_all() 
+        self.x2f.upload_objects_in_sheets()
 
 
-    def upload_to_sbh(self):
+    def _upload_to_sbh(self, existing):
+        print('uploading to SBH')
         # Add flapjack annotations to the SBOL
         doc = sbol2.Document()
         doc.read(self.file_path_out)
-        for tl in self.sbol_doc:
-            id = str(tl).split('/')[-2]
-            if id in self.sbol_hash_map:
+        subCollection = sbol2.Collection(self.importType)
+        for tl in doc:
+            subCollection.members = subCollection.members + [ tl.identity ]
+            sbol_id = str(tl).split('/')[-2]
+            if sbol_id in self.sbol_hash_map:
                 setattr(tl, 'Flapjack_ID',
                         sbol2.URIProperty(tl,
-                        f'https://flapjack.rudge-lab.org/ID',
-                            '0', '1', [], initial_value=f'http://wwww.{self.fj_url}/{self.sbol_hash_map[id]}'))
+                        'https://flapjack.rudge-lab.org/ID',
+                            '0', '1', [], initial_value=f'https://{self.fj_url}/{self.sbol_hash_map[sbol_id]}'))
         #doc = sbol2.Document()
-        doc.write(self.file_path_out2)
+        for member_uri in subCollection.members:
+            print(f"Member URI: {member_uri}")
+        doc.addCollection(subCollection)
+        doc.write(self.file_path_out_FJ)
 
         # SBH file upload
-        response = requests.post(
-            f'{self.sbh_url}/submit',
-            headers={
-                'Accept': 'text/plain',
-                'X-authorization': self.sbh_token
-            },
-            files={
-            'files': open(self.file_path_out2,'rb'),
-            },
-            data={
-                'id': self.sbh_collection,
-                'version' : '1',
-                'name' : self.sbh_collection,
-                'description' : self.sbh_collection_description, #TODO
-                'overwrite_merge' : self.sbh_overwrite
-            },
+        if (existing):
+            print(f"sbh token: {self.sbh_token}")
+            print(f"root collections: {self.sbh_collection_url}")
+            print(f"sbh url: {self.sbh_url}")
+            print(f"sbh overwrite: {self.sbh_overwrite_num}")
+            print(f"file output: {self.file_path_out_FJ}")
+            response =  requests.post(
+                f'{self.sbh_url}/submit',
+                headers={
+                    'Accept': 'text/plain',
+                    'X-authorization': self.sbh_token
+                },
+                files={
+                    'files': open(self.file_path_out_FJ,'rb'),
+                },
+                data={
+                    'rootCollections' : self.sbh_collection_url,
+                    'overwrite_merge' : self.sbh_overwrite_num
+                },
+            )
+            print("status:", response.status_code)
+            print("headers:", response.headers)
+            print("body:", response.text)
+            print("content: ", response.content)
+            if not response.ok:
+                raise Exception(f"SynBioHub submit failed ({response.status_code}): {response.text}")
+            return self.sbh_collection_url
 
-        )
+        else:
+            print("creating new collection")
+            response = requests.post(
+                f'{self.sbh_url}/submit',
+                headers={
+                    'Accept': 'text/plain',
+                    'X-authorization': self.sbh_token
+                },
+                files={
+                'files': open(self.file_path_out_FJ,'rb'),
+                },
+                data={
+                    'id': self.sbh_collection_name,
+                    'version' : '1',
+                    'name' : self.sbh_collection_name,
+                    'description' : self.sbh_description,
+                    'overwrite_merge' : self.sbh_overwrite_num
+                },
+            )
+            if response.text == "Submission id and version already in use":
+                print('not submitted')
+                self.upload_url = None
+                raise AttributeError(f'The collection ({self.sbh_collection_name}) could not be submitted to synbiohub as the collection already exists and overwrite is not on.')
 
-        if response.text == "Submission id and version already in use":
-            print('not submitted')
-            self.upload_url = None
-            raise AttributeError(f'The collection ({self.sbh_collection}) could not be submitted to synbiohub as the collection already exists and overite is not on.')
-        # if response.text == "Successfully uploaded":
-        #      success = True
-        #self.status = "Uploaded to SynBioHub"
-        response.raise_for_status()
-        return f'{self.sbol_graph_uri}/{self.sbh_collection}/{self.sbh_collection}_collection/1'
-
-    def upload_sbh_attachments(self):
-
+            print("status:", response.status_code)
+            print("headers:", response.headers)
+            print("body:", response.text)
+            print("content: ", response.content)
+            if not response.ok:
+                raise Exception(f"SynBioHub submit failed ({response.status_code}): {response.text}")
+            return f'{self.sbol_graph_uri}/{self.sbh_collection_name}/{self.sbh_collection_name}_collection/1'
+        
+    def _upload_sbh_attachments(self):
+        print("uploading attachments")
         headers = {'Accept': 'text/plain', 'X-authorization': self.sbh_token}
         self.version = '1'
 
         for location, file in self.attachments.items():
-            upload_url = '/'.join(s.strip('/') for s in [self.sbh_url, 'user', self.sbh_user, self.sbh_collection, location, self.version])
 
             if isinstance(file, str):
                 with open(file, 'rb') as fobj:
                     upload_file = {'file': (os.path.basename(file), fobj)}
-                    # print(upload_url)
-                    response = requests.post(f'{upload_url}/attach', headers=headers, files=upload_file)
-                    response.raise_for_status()
+                    print(self.collection_url)
+                    collectionID = self.collection_url.split("/")[-3]
+                    print(collectionID)
+                    collectionVersion = self.collection_url.split("/")[-1]
+                    print(collectionVersion)
+                    print(f'{self.sbh_url}/user/{self.sbh_user}/{collectionID}/{collectionID}_collection/{collectionVersion}/attach')
+                    response = requests.post(f'{self.sbh_url}/user/{self.sbh_user}/{collectionID}/{collectionID}_collection/{collectionVersion}/attach', headers=headers, files=upload_file)
+                    print("status:", response.status_code)
+                    print("headers:", response.headers)
+                    print("body:", response.text)
+                    print("content: ", response.content)
+                    if not response.ok:
+                        raise Exception(f"Uploading attachments to SynBioHub failed ({response.status_code}): {response.text}")
                     print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
             else:
                 # file-like objects
                 filename = getattr(file, 'filename', 'attachment')
                 fobj = getattr(file, 'stream', None) or getattr(file, 'file', None) or file
                 upload_file = {'file': (filename, fobj)}
-                # print(upload_url)
-                response = requests.post(f'{upload_url}/attach', headers=headers, files=upload_file)
-                response.raise_for_status()
+                print(self.collection_url)
+                collectionID = self.collection_url.split("/")[-3]
+                print(collectionID)
+                collectionVersion = self.collection_url.split("/")[-1]
+                print(collectionVersion)
+                print(f'{self.sbh_url}/user/{self.sbh_user}/{collectionID}/{collectionID}_collection/{collectionVersion}/attach')
+                response = requests.post(f'{self.sbh_url}/user/{self.sbh_user}/{collectionID}/{collectionID}_collection/{collectionVersion}/attach', headers=headers, files=upload_file)
+                print("status:", response.status_code)
+                print("headers:", response.headers)
+                print("body:", response.text)
+                print("content: ", response.content)
+                if not response.ok:
+                    raise Exception(f"Uploading attachments to SynBioHub failed ({response.status_code}): {response.text}")
                 print(f'Uploaded attachment {upload_file["file"][0]}: {response.status_code}')
-        
-    def run(self):
+
+
+    def run(self, existing):
+
         print("Starting XDC run")
-        self.initialize()
-        self.log_in_fj()
-        self.log_in_sbh()
-        if (self.sbh_token):
-            self.convert_to_sbol()
-            self.generate_sbol_hash_map()
-            if self.fj_token:
-                self.upload_to_fj()
-            self.collection_url = self.upload_to_sbh()
-            if self.attachments:
-                self.upload_sbh_attachments()
-            print("XDC run complete")
-            return self.collection_url
-        raise AttributeError(f'Unable to login to SynBioHub')
+
+        try:
+            self._log_in_sbh()
+        except Exception as e:
+            print('Error logging into SynBioHub')
+            raise RuntimeError(f"Error logging into SynBioHub: {e}") from e
+
+        if not self.sbh_token:
+            print('Unable to login to SynBioHub')
+            raise AttributeError("Unable to login to SynBioHub")
+
+
+        if self.fj_token:
+            try:
+                self._log_in_fj()
+            except Exception as e:
+                print('Error logging into Flapjack')
+                raise RuntimeError(f"Error logging into Flapjack: {e}") from e
+
+            try:
+                self._generate_sbol_hash_map()
+                print("sbol hash map generated")
+            except Exception as e:
+                print('Error generating SBOL hash map')
+                raise RuntimeError(f"Error generating SBOL hash map: {e}") from e
+
+            try:
+                self._upload_to_fj()
+            except Exception as e:
+                print('Error uploading to Flapjack')
+                raise RuntimeError(f"Error uploading to Flapjack: {e}") from e
+
+        try:
+            self.collection_url = self._upload_to_sbh(existing)
+            print("collection URL: " + str(self.collection_url))
+        except Exception as e:
+            print('Error uploading to SynBioHub')
+            raise RuntimeError(f"Error uploading to SynBioHub: {e}") from e
+
+        if self.attachments is not None:
+            print(self.attachments)
+            try:
+                self._upload_sbh_attachments()
+                print("uploaded attachments to SBH")
+            except Exception as e:
+                print('Error uploading attachments to SynBioHub')
+                raise RuntimeError(f"Error uploading attachments to SynBioHub: {e}") from e
+
+        print("XDC run complete")
+        return (self.collection_url, None)
+   
+    def get_sbol_document(self):
+        return self.sbol_doc
+
+
+    def upload_to_new_collection(self, sbh_url, sbh_collection_name, sbh_overwrite: bool, sbh_description=None,
+                          sbh_user=None, sbh_pass=None, sbh_token=None,  
+                          fj_url=None, fj_overwrite=None, 
+                          fj_user=None, fj_pass=None, fj_token=None):
+        
+        self.sbh_url = sbh_url
+        self.sbh_user = sbh_user
+        self.sbh_pass = sbh_pass
+        self.sbh_token = sbh_token
+
+        self.sbh_collection_name = sbh_collection_name
+        if sbh_description is None:
+            self.sbh_description = 'Collection of SBOL files uploaded by XDC'
+        else:
+            self.sbh_description = sbh_description
+        self.sbh_overwrite_num = 1 if sbh_overwrite else 0
+
+        self.fj_url = fj_url
+        self.fj_user = fj_user
+        self.fj_pass = fj_pass
+        self.fj_token = fj_token
+        # TODO: Flapjack overwrite settings
+        self.fj_overwrite = fj_overwrite
+
+        return self.run(existing=False)
+    
+
+    def upload_to_existing_collection(self, sbh_url, collection_url, sbh_overwrite: bool, 
+                          sbh_user=None, sbh_pass=None, sbh_token=None,  
+                          fj_url=None, fj_overwrite=None, 
+                          fj_user=None, fj_pass=None, fj_token=None, importType=None):
+
+        self.sbh_url = sbh_url
+        self.sbh_user = sbh_user
+        self.sbh_pass = sbh_pass
+        self.sbh_token = sbh_token
+
+        self.sbh_collection_url = collection_url
+        self.sbh_overwrite_num = 3 if sbh_overwrite else 2
+
+        self.fj_url = fj_url
+        self.fj_user = fj_user
+        self.fj_pass = fj_pass
+        self.fj_token = fj_token
+        # TODO: Flapjack overwrite settings
+        self.fj_overwrite = fj_overwrite
+        self.importType = importType
+
+        return self.run(existing=True)
 
 
 
@@ -298,13 +529,13 @@ class XDE:
 
     """
     def getFileNameFromString(self, string):
-        pattern = '[\w-]+?(?=\.)'
+        pattern = r'[\w-]+?(?=\.)'
         # searching the pattern
         result = re.search(pattern, string)
     
         return result.group()
 
-    def generateSampleData(self, file_list, sheet_to_read_from,time_col_name, data_cols_offset=0): 
+    def generateSampleData(self, file_list, sheet_to_read_from, time_col_name, data_cols_offset=0): 
         num_assays = len(file_list) - 1
         file_name_list = []
 
@@ -524,7 +755,7 @@ class XDE:
 
         return
     
-    def extractData(self, file_list, sheet_to_read_from, time_col_name='Time', data_cols_offset=0, num_rows_btwn_data=0):
+    def run(self, file_list, sheet_to_read_from, time_col_name='Time', data_cols_offset=0, num_rows_btwn_data=0):
         """
         Full run; extracts data from the input excel files and writes it to the XDC sheet.
         """
