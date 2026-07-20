@@ -15,6 +15,7 @@ Requires-Python: >=3.10
 Description-Content-Type: text/markdown
 Requires-Dist: excel2flapjack==1.1.1
 Requires-Dist: excel2sbol @ git+https://github.com/DRAGGON-Lab/Excel-to-SBOL.git@gui
+Requires-Dist: requests==2.25.1
 Provides-Extra: test
 Requires-Dist: pytest<5.0.0; extra == "test"
 Requires-Dist: pytest-cov[all]; extra == "test"

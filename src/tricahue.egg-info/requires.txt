@@ -1,5 +1,6 @@
 excel2flapjack==1.1.1
 excel2sbol @ git+https://github.com/DRAGGON-Lab/Excel-to-SBOL.git@gui
+requests==2.25.1
 
 [test]
 pytest<5.0.0
