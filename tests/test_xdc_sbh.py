@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../s
 import requests
 import tricahue
 
-sbh_url = "https://synbiohub.org"
+sbh_url = "https://api.synbiohub.org" #"https://synbiohub.org"
 sbh_user = "synbiotest"
 sbh_pass = "test123"
 sbh_overwrite = True
