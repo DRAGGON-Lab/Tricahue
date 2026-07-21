@@ -47,20 +47,20 @@ class XDC_SBH_tests(unittest.TestCase):
             },
         )
         self.assertEqual(response.status_code, 200, f"Got response: {response.status_code}")
-
-    def test_medias(self):
+    
+    def test_resources(self):
         self.setup("Resources", "xlsm")
         self.assert_collection_available(self.upload_to_sbh())
 
-    def test_chassis(self):
+    def test_strains(self):
         self.setup("Strains", "xlsm")
         self.assert_collection_available(self.upload_to_sbh())
 
-    def test_chemicals(self):
+    def test_sampledesigns(self):
         self.setup("SampleDesign", "xlsm")
         self.assert_collection_available(self.upload_to_sbh())
 
-    def test_strain(self):
+    def test_study(self):
         self.setup("Study", "xlsm")
         self.assert_collection_available(self.upload_to_sbh())
 
