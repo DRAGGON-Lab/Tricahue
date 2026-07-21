@@ -13,7 +13,7 @@ sbh_user = "synbiotest"
 sbh_pass = "test123"
 sbh_overwrite = True
 
-test_file_path = "tests/test_files"
+test_file_path = "tests/test_files/e2s_templates"
 
 
 class XDC_SBH_tests(unittest.TestCase):
@@ -49,19 +49,19 @@ class XDC_SBH_tests(unittest.TestCase):
         self.assertEqual(response.status_code, 200, f"Got response: {response.status_code}")
 
     def test_medias(self):
-        self.setup("Tricahue_v11.6b_Medias", "xlsx")
+        self.setup("Resources", "xlsm")
         self.assert_collection_available(self.upload_to_sbh())
 
     def test_chassis(self):
-        self.setup("Tricahue_v11.6b_Chassis", "xlsx")
+        self.setup("Strains", "xlsm")
         self.assert_collection_available(self.upload_to_sbh())
 
     def test_chemicals(self):
-        self.setup("Tricahue_v11.6b_Chemicals", "xlsm")
+        self.setup("SampleDesign", "xlsm")
         self.assert_collection_available(self.upload_to_sbh())
 
     def test_strain(self):
-        self.setup("Tricahue_Strain", "xlsm")
+        self.setup("Study", "xlsm")
         self.assert_collection_available(self.upload_to_sbh())
 
 
