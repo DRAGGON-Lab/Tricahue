@@ -8,12 +8,12 @@ version = "0.0.b5"
 description = "This package extracts experimental data and metadata, converts to standard formats, uploads to SynBioHub and Flapjack, and connects them"
 readme = "README.md"
 dependencies = [
-    "excel2flapjack @ git+https://github.com/SynBioDex/Excel-to-Flapjack.git",
-    "excel2sbol @ git+https://github.com/SynBioDex/Excel-to-SBOL.git@fix-no-part-id-and-no-blank-id",
-    "numpy==1.26.2",
-    "pandas==1.5.3"   
+    "excel2flapjack==1.1.1",
+    "excel2sbol @ git+https://github.com/DRAGGON-Lab/Excel-to-SBOL.git@gui",
+    "requests==2.25.1",
+    "packaging==21.3"
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE.*"]
 keywords = ["SBOL", "test", "data", "experimental", "synthetic biology"]
@@ -25,6 +25,7 @@ maintainers = [
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
     "Operating System :: OS Independent",
 ]
 
